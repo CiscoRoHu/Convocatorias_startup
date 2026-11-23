@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapa de incubadoras y concursos | Perú + LatAm</title>
+<style>
+:root{--bg:#f5f7fb;--ink:#172033;--muted:#64748b;--line:#e5eaf2;--blue:#315efb;--teal:#0f9f8f;--amber:#b7791f;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:linear-gradient(120deg,#111c3b,#233d83 65%,#176b79);color:white;padding:42px max(22px,calc((100% - 1180px)/2)) 34px}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;color:#b9ccff}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.08;max-width:780px;margin:12px 0}
+header p{max-width:760px;color:#d8e2ff;margin:12px 0 0}
+.wrap{max-width:1180px;margin:auto;padding:24px 22px 60px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-4px}
+.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:15px 17px;box-shadow:0 5px 18px #14213d08}
+.stat b{display:block;font-size:25px}.stat span{color:var(--muted);font-size:12px}
+.notice{margin:20px 0;padding:13px 16px;border-left:4px solid #e0a33a;background:#fff9ec;border-radius:8px;color:#684b16;font-size:13px}
+.controls{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:10px;margin:22px 0 12px}
+input,select{width:100%;padding:12px 13px;border:1px solid #d8dfeb;border-radius:10px;background:white;color:var(--ink);font:inherit;outline:none}
+input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #315efb18}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}
+.tab{border:1px solid #dbe2ee;background:white;color:#43516b;padding:8px 13px;border-radius:999px;cursor:pointer;font-weight:650;font-size:13px}
+.tab.active{background:#eaf0ff;border-color:#b8c8ff;color:#2449d8}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0 14px;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px;display:flex;flex-direction:column;min-height:270px;box-shadow:0 5px 18px #14213d06}
+.cardtop{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.country{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+h2{font-size:18px;line-height:1.25;margin:7px 0 9px}
+.pill{font-size:11px;font-weight:800;padding:5px 8px;border-radius:999px;white-space:nowrap;background:#edf2ff;color:#3153c9}
+.pill.open{background:#e7f8f2;color:#087c5b}.pill.soon{background:#fff2d9;color:#9a6200}.pill.closed{background:#f0f2f6;color:#667085}
+.desc{color:#526078;font-size:13px;margin:0 0 12px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.fact{background:#f7f9fc;border-radius:9px;padding:8px 9px;font-size:12px;color:#526078}
+.fact b{display:block;color:#25324b;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin:11px 0}
+.tag{font-size:11px;color:#59677e;background:#f0f3f8;padding:4px 7px;border-radius:6px}
+.actions{display:flex;gap:8px;margin-top:14px}
+a.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:9px;padding:9px 12px;font-size:12px;font-weight:800}
+.primary{background:var(--blue);color:white}.secondary{border:1px solid #dbe2ee;color:#40506a;background:white}
+.empty{grid-column:1/-1;text-align:center;padding:45px;color:var(--muted);background:white;border:1px dashed #cbd5e1;border-radius:14px}
+footer{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;color:var(--muted);font-size:12px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){header{padding:32px 20px}.controls{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.meta{align-items:flex-start;flex-direction:column}.wrap{padding:20px 15px 45px}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">Directorio interactivo · corte al 23 de noviembre de 2026</div>
+<h1>Incubadoras, programas y concursos para emprendimientos tecnológicos</h1>
+<p>Explora oportunidades en Perú y Latinoamérica para proyectos de IA, robótica, hardware, software y tecnología. Filtra por etapa, país o disponibilidad y accede directamente a las páginas de cada programa.</p></header>
+<main class="wrap">
+<section class="stats">
+<div class="stat"><b id="total">20</b><span>programas incluidos</span></div>
+<div class="stat"><b>15</b><span>opciones en Perú</span></div>
+<div class="stat"><b>5</b><span>opciones internacionales / regionales</span></div>
+<div class="stat"><b>2027</b><span>próximo ciclo de varias convocatorias</span></div>
+</section>
+<div class="notice"><b>Importante:</b> las fechas y estados reflejan el documento con corte al 23/11/2026. Antes de postular, confirma bases, requisitos y vigencia en el enlace oficial. “Proyectado” no significa convocatoria abierta.</div>
+<section class="controls">
+<input id="q" type="search" placeholder="Buscar programa, institución o tecnología…">
+<select id="stage"><option value="">Todas las etapas</option><option>Idea</option><option>Prototipo / MVP</option><option>Investigación / Deep Tech</option></select>
+<select id="availability"><option value="">Cualquier estado</option><option value="open">Abierta / continua</option><option value="soon">Próxima / proyectada</option><option value="closed">Cerrada / sin fecha</option></select>
+</section>
+<div class="tabs" id="tabs">
+<button class="tab active" data-country="all">Todos</button><button class="tab" data-country="Perú">Perú</button><button class="tab" data-country="Internacional">Internacional</button>
+</div>
+<div class="meta"><span id="count">Mostrando 20 oportunidades</span><span>Orden: oportunidades tempranas primero</span></div>
+<section class="grid" id="cards"></section>
+<footer>Información organizada a partir del PDF “Mapa de Programas de Incubación, Pre-incubación y Concursos para Emprendimientos Tecnológicos Tempranos en Perú y Latinoamérica”. Los enlaces llevan a páginas de programas, convocatorias o información institucional; no todos son formularios de postulación directos.</footer>
+</main>
+<script>
+const data = [
+{n:"Emprende UP – Semillero",org:"Universidad del Pacífico",country:"Perú",focus:"General · Tech-friendly",stage:"Idea",status:"open",label:"Admisión continua",date:"Todo el año; inicios semestrales en abril y setiembre",cost:"S/ 1,700 por equipo",desc:"Pre-incubación para validar ideas de negocio. Incluye mentorías, asesorías, plataformas tecnológicas, redes y preparación para incubación.",url:"https://emprendeup.pe/semillero/",kind:"open"},
+{n:"Kaman – Pre-incubación y planes de servicio",org:"UCSP · Arequipa / virtual",country:"Perú",focus:"Tech · Sostenibilidad · General",stage:"Idea",status:"open",label:"Admisión continua",date:"Planes de servicio todo el año; incubación por cohortes",cost:"Desde S/ 225/mes (Start)",desc:"Capacitaciones prácticas, mentorías especializadas, coworking y articulación con fondos para validar soluciones hacia ventas o MVP.",url:"https://ucsp.edu.pe/kaman/servicios/",kind:"open"},
+{n:"Grand Challenge Cayetano 2027",org:"Bioincuba / UPCH",country:"Perú",focus:"Agua · Energía · Ambiente · Tech",stage:"Idea",status:"open",label:"Convocatoria 2027 publicada",date:"Convocatoria activa; el anuncio no precisa cierre",cost:"Gratuito para comunidad UPCH",desc:"Reto de ideación y validación para sistemas autónomos o híbridos de energía, gestión de agua y reforestación. Requiere afiliación UPCH: docente y estudiante de dos carreras distintas.",url:"https://innovacion.cayetano.edu.pe/noticias/grand-challenge-cayetano-santa-maria-del-mar-2027/",kind:"open"},
+{n:"UTEC Ventures – Estudiantes y egresados",org:"UTEC · Lima",country:"Perú",focus:"IA · Deep Tech · Tecnología",stage:"Idea",status:"soon",label:"Ciclos periódicos",date:"Vinculados al calendario académico; sin fecha 2027 publicada",cost:"No especificado en el documento",desc:"Bootcamps y sprints de 12 semanas. Acepta ideación o prototipo; exige dedicación full-time y al menos un fundador o representante estudiante o egresado UTEC.",url:"https://utecventures.com/estudiantes",kind:"soon"},
+{n:"StartUp Perú – Emprendimientos Innovadores (14G)",org:"ProInnóvate",country:"Perú",focus:"Tech · Innovación general",stage:"Prototipo / MVP",status:"soon",label:"Proyección Q1–Q2 2027",date:"13G cerró en enero de 2026; 14G proyectada para 2027",cost:"Hasta S/ 67,000 no reembolsables",desc:"Capital semilla para equipos de 2 a 4. Requiere PMV desarrollado y probado con usuarios, tracción demostrable y contrapartida. Postulación gratuita.",url:"https://startup.proinnovate.gob.pe/concursos/emprendimientos-innovadores/",kind:"soon"},
+{n:"INDECOPI – Programa Patenta",org:"INDECOPI",country:"Perú",focus:"Hardware · Robótica · Invenciones",stage:"Prototipo / MVP",status:"soon",label:"Próximo corte proyectado",date:"Convocatoria 01/2027 proyectada para febrero",cost:"Gratuito",desc:"Reportes de viabilidad y asesoría para proteger patentes o modelos de utilidad. Requiere memoria técnica de la invención.",url:"https://www.patenta.pe/programa-patenta/",kind:"soon"},
+{n:"Kaman – Jóvenes Emprendimiento e Innovación",org:"UCSP · Arequipa",country:"Perú",focus:"Mecatrónica · Electrónica · Tech",stage:"Idea",status:"soon",label:"Edición 2027 proyectada",date:"Siguiente edición proyectada para marzo de 2027",cost:"Becas del 100% para estudiantes UCSP según el documento",desc:"Programa presencial de 15 semanas con formación data-driven, mentorías, pitch y Demo Day. Dirigido a estudiantes UCSP y requiere entrevista.",url:"https://ucsp.edu.pe/agenda/programa-jovenes-emprendimiento-innovacion/",kind:"soon"},
+{n:"Jaku Emprende – Wichariy, PEM y RUWAY",org:"UNSA · Arequipa",country:"Perú",focus:"Tecnología · General",stage:"Idea",status:"soon",label:"Proyección marzo–mayo 2027",date:"Líneas con ediciones anuales",cost:"Programas gratuitos",desc:"Pre-incubación, entrenamiento para startups, incubación Sisay y creación de empresa mediante RUWAY. Ruta de preparación para StartUp Perú.",url:"https://www.unsa.edu.pe/jaku/",kind:"soon"},
+{n:"Bioincuba – Business Lab y asesoría StartUp Perú",org:"UPCH · Virtual / nacional",country:"Perú",focus:"Biotecnología · Salud · Ambiente · Tech",stage:"Idea",status:"soon",label:"Proyección junio 2027",date:"Business Lab 2026 cerró en junio; asesoría alineada a StartUp Perú",cost:"Gratuito",desc:"Formación virtual para estructurar negocios innovadores y respaldo técnico gratuito para postular a fondos de ProInnóvate.",url:"https://investigacion.cayetano.edu.pe/noticias/bioincuba-impulsa-a-emprendedores-hacia-startup-peru-12g-con-asesoria-gratuita/",kind:"soon"},
+{n:"CIDE-PUCP / Nexum – #Mentored y Nexpro",org:"PUCP · Lima / virtual",country:"Perú",focus:"Tech · General",stage:"Prototipo / MVP",status:"closed",label:"Edición 2026 cerrada",date:"Proyección julio–agosto 2027",cost:"Nexpro: S/ 2,200 general / S/ 1,900 PUCP",desc:"Incubación de tres meses y mentoría 1:1. Nexpro exige prototipo tecnológico o ventas previas de S/ 50,000; para ideas en cero, el documento recomienda Santander X Explorer.",url:"https://cide.pucp.edu.pe/nexum/multisectorial/",kind:"closed"},
+{n:"eAwards Perú",org:"Fundación NTT DATA",country:"Perú",focus:"IA · Deep Tech · Impacto social",stage:"Prototipo / MVP",status:"soon",label:"Proyección agosto 2027",date:"Edición 2026 cerró en agosto",cost:"Gratuito · premio nacional US$ 10,000",desc:"Requiere prototipo avanzado; descarta ideas en papel. Ofrece mentoría, red de inversores y pase a la final global.",url:"https://globaleawards.com/es/peru/",kind:"soon"},
+{n:"UTEC Ventures – Cimientos / UV / Femlab",org:"UTEC Ventures",country:"Perú",focus:"Industrial Frontier · IA · Deep Tech",stage:"Prototipo / MVP",status:"soon",label:"Proyección agosto–octubre 2027",date:"Cimientos recibe postulaciones de agosto a octubre",cost:"No especificado en el documento",desc:"Programas intensivos de 9 a 12 semanas con mentoría, inversión potencial y acceso a capacidades técnicas y científicas de UTEC. Femlab exige fundadora mujer peruana o residente.",url:"https://utecventures.com/startups/aceleradora-uv",kind:"soon"},
+{n:"Startup UNI – Pre-incubación Impulso e Incubación",org:"Hub de Innovación UNI",country:"Perú",focus:"Ingeniería · Robótica · IoT",stage:"Idea",status:"soon",label:"Próxima edición proyectada 2027",date:"Ediciones 2026 cerradas",cost:"No especificado en el documento",desc:"Impulso lleva una idea al primer prototipo o PMV en ocho semanas. Acceso a Innovation Lab, kits de electrónica, IoT, impresión 3D, VR/AR y coworking. Prioriza comunidad UNI y RUI.",url:"https://hub.uni.edu.pe/programas",kind:"soon"},
+{n:"PROCIENCIA – Desarrollo Tecnológico y Emprendimiento Académico",org:"CONCYTEC / PROCIENCIA",country:"Perú",focus:"Deep Tech · Robótica · TIC · Bio · Energía",stage:"Investigación / Deep Tech",status:"soon",label:"Calendario 2027 aprobado",date:"Calendario 2027 con 15 convocatorias; líneas 2026 ya cerradas",cost:"Hasta S/ 350,000 en una de las líneas descritas",desc:"Fondos no reembolsables para desarrollo y validación tecnológica. Alta exigencia: investigador con grado, equipo académico, entidad empresarial asociada y contrapartida.",url:"https://prociencia.gob.pe/",kind:"soon"},
+{n:"IncubaUNT – Innova y Escala",org:"Universidad Nacional de Trujillo",country:"Perú",focus:"Ciencia · Tecnología · General",stage:"Idea",status:"closed",label:"Sin fecha exacta publicada",date:"No se identificaron fechas 2026–2027 en las fuentes consultadas",cost:"No especificado en el documento",desc:"Pre-incubación Innova para ideas e incubación Escala para prototipos, con mentoría y acompañamiento hacia capital semilla y vínculos con inversores.",url:"https://unitru.edu.pe/",kind:"closed"},
+{n:"Start-Up Chile – Build (BIG 13)",org:"CORFO · Chile (abierto a Perú)",country:"Internacional",focus:"Tech · Alto impacto · General",stage:"Idea",status:"soon",label:"Cierre 24 nov. 2026",date:"24 de noviembre de 2026, 13:00 GMT-3; próxima generación proyectada mayo 2027",cost:"Equity-free; hasta CLP 15 millones estimados en guía citada",desc:"Acepta postulantes extranjeros como persona natural sin empresa constituida. Exige 18+, al menos 10% de participación, dedicación full-time y establecerse en Chile durante la ejecución.",url:"https://startupchile.org/postula/build/",kind:"soon"},
+{n:"Santander X Explorer – 1.ª edición 2027",org:"Explorer by Santander X",country:"Internacional",focus:"Tech · IA · Sostenibilidad · ODS",stage:"Idea",status:"open",label:"Cierra 10 dic. 2026",date:"10 de diciembre de 2026, 14:00 GMT; inicio del programa 18 de enero de 2027",cost:"Gratuito · 100% online",desc:"Pre-incubación de 12 semanas para personas o equipos de hasta cinco. No exige afiliación universitaria ni persona jurídica; incluye experimentos asistidos por IA, comunidad y certificado.",url:"https://explorerbyx.org/es/pages/explorer-landing-page",kind:"open"},
+{n:"Hult Prize 2027",org:"Hult Prize Foundation",country:"Internacional",focus:"Impacto social · Tech · ODS",stage:"Idea",status:"open",label:"Registro abierto",date:"Ciclo 2027 abierto; sin fecha única de cierre indicada",cost:"No se indica costo",desc:"Competencia global para equipos de 2 a 4 estudiantes universitarios matriculados en carreras de grado. No exige empresa ni prototipo previo; mayores de 18 años al 28/02/2027.",url:"https://www.hultprize.org/register",kind:"open"},
+{n:"Parallel18 – P18 Generation 15",org:"Puerto Rico Science, Technology & Research Trust",country:"Internacional",focus:"Software · Hardware · Tech",stage:"Prototipo / MVP",status:"soon",label:"Reapertura confirmada en 2027",date:"Lista de espera abierta para Gen. 15; ediciones previas abrieron en abril",cost:"US$ 40,000 equity-free + SAFE US$ 20,000 según reportes citados",desc:"Exige empresa incorporada en Puerto Rico o EE. UU., mínimo dos fundadores full-time, reubicación presencial por 16 semanas y preparación para ronda pre-semilla o semilla.",url:"https://prsciencetrust.org/p18-gen13-parallel18/",kind:"soon"},
+{n:"Ruta N – Medellín Next / Venture Client",org:"Ruta N · Colombia",country:"Internacional",focus:"IA · Industria 4.0 · Tech",stage:"Prototipo / MVP",status:"closed",label:"Ediciones 2026 cerradas",date:"Proyección mayo–julio de 2027",cost:"Pilotos corporativos y aceleración; condiciones según programa",desc:"Opción de escalamiento, no adecuada para una idea en papel: exige validación de mercado y tracción comercial en Medellín o capacidad de piloto corporativo inmediato.",url:"https://rutanmedellin.org/ofertas/medellin-next",kind:"closed"}
+];
+let country="all";
+const $=id=>document.getElementById(id);
+function render(){
+ const q=$("q").value.toLowerCase().trim(), st=$("stage").value, av=$("availability").value;
+ const filtered=data.filter(x=>(country==="all"||x.country===country)&&(!st||x.stage===st)&&(!av||x.status===av)&&(!q||[x.n,x.org,x.focus,x.desc,x.country].join(" ").toLowerCase().includes(q)));
+ $("count").textContent=`Mostrando ${filtered.length} de ${data.length} oportunidades`;
+ $("total").textContent=data.length;
+ $("cards").innerHTML=filtered.length?filtered.map(x=>`<article class="card">
+ <div class="cardtop"><div class="country">${x.country} · ${x.org}</div><span class="pill ${x.kind}">${x.label}</span></div>
+ <h2>${x.n}</h2><div class="tags">${x.focus.split(" · ").map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+ <p class="desc">${x.desc}</p><div class="facts"><div class="fact"><b>Etapa</b>${x.stage}</div><div class="fact"><b>Fecha / estado</b>${x.date}</div><div class="fact"><b>Financiamiento / costo</b>${x.cost}</div><div class="fact"><b>Modalidad</b>${x.country==="Internacional"?"Regional / global":"Perú"}</div></div>
+ <div class="actions"><a class="btn primary" href="${x.url}" target="_blank" rel="noopener">Ver convocatoria / programa ↗</a></div></article>`).join(""):`<div class="empty">No hay resultados con esos filtros. Prueba otra búsqueda o cambia los filtros.</div>`;
+}
+$("q").addEventListener("input",render);$("stage").addEventListener("change",render);$("availability").addEventListener("change",render);
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));b.classList.add("active");country=b.dataset.country;render()}));
+render();
+</script></body></html>
